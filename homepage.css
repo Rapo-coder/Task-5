@@ -1,0 +1,157 @@
+.container {
+    margin: 0px;
+  }
+  .contact{
+    margin-left: 2px;
+    border: 1px solid darkgray;
+    width: 300px;
+    padding-left: 8px;
+    padding-top: 11px
+ 
+  } 
+  .titel {
+    background-color: #3399CC;
+    padding: 1px;
+  }
+   
+  .titel h1 {
+    font-size: 25px;
+    color: #FFFFFF;
+    font-weight: normal;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    margin-left: 21px;
+  }
+   
+  .navbar {
+    background-color: #333333;
+  }
+   
+  .navbar .navbar-items ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    display: flex;
+    color: #FFFFFF;
+  }
+   
+  .navbar-items ul li a:hover {
+    background-color: #FF9900;
+    color: black;
+  }
+   
+  .active {
+    background-color: #FF9900;
+    border-left: #FFF solid 3px;
+    background-clip: padding-box;
+  }
+   
+  .active a {
+    color: #000000;
+  }
+   
+  .navbar ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+  }
+   
+  .navbar-items a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 21px 10px 21px;
+  }
+   
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 30px;
+  }
+   
+  .logo img {
+    width: 25px;
+    margin: 0px 0px 0px 78em;
+    padding-top: 2px;
+  }
+   
+  .contactLists {
+    font-size: normal;
+    font-family: sans-serif;
+    margin-left: 19px;
+    font-weight: normal;
+  }
+   
+  h4 {
+    font-size: larger;
+  }
+   
+  .dialog-box {
+    width: 450px;
+    margin-left: 36em;
+    margin-top: 5em;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    position: absolute;
+    z-index: 1000;
+  }
+   
+  .input-group {
+    margin-bottom: 15px;
+  }
+   
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+   
+  .input-group input {
+    width: 345px;
+    padding: 8px;
+  }
+   
+  .input-group textarea {
+    width: 345px;
+    padding: 8px;
+  }
+   
+  .phone {
+    display: flex;
+  }
+   
+  .input-group .phone input {
+    padding: 8px;
+  }
+   
+  .col input {
+    width: 158px;
+  }
+   
+  .details {
+    border: 1px solid;
+    width: 177px;
+    padding-left: 25px;
+  }
+   
+  /* Full Details Box */
+  .full-details-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+   
+  .full-details-box button {
+    margin-top: 10px;
+  }

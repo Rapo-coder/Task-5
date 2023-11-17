@@ -25,8 +25,8 @@
  
   <div id="addDialog" class="dialog-box">
     <form>
-      <div class="input-group">
-        <label for="name">Name:</label>
+      <div class="input-group name">
+        <label for="name"><h3>Name:</h3></label>
         <input type="text" id="name" required>          
       </div> 
 
@@ -61,18 +61,15 @@
       </div>
     </form> 
   </div>
-
-  <div id="contactList" class="contactLists" onclick="showFullDetails(contact)">
-    <h4>CONTACTS</h4>
+  
+  <div class="showContacts">
+    
+    <div id="contactList" class="contactLists" >
+      <h4>CONTACTS</h4>
+    </div>
+    
+    <div id="fullDetailsBox" class="fullDetailsBox"> </div>
   </div>
-
-<div id="showFullDetails" class="showFullDetails">
-
-</div>
-
-
-
-
 </div>
 
 <script src="homepage.js"></script>

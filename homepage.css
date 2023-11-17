@@ -89,9 +89,9 @@
   }
    
   .dialog-box {
-    width: 450px;
-    margin-left: 36em;
-    margin-top: 5em;
+    width: 495px;
+    margin-left: 28em;
+    margin-top: 3em;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #333;
@@ -100,7 +100,7 @@
     position: absolute;
     z-index: 1000;
   }
-   
+
   .input-group {
     margin-bottom: 15px;
   }
@@ -138,20 +138,64 @@
     padding-left: 25px;
   }
    
-  /* Full Details Box */
-  .full-details-box {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-   
-  .full-details-box button {
-    margin-top: 10px;
-  }
+.showContacts
+{
+  display: flex;
+}
+
+.fullDetailsBox
+{
+  margin-left: 9em;
+  margin-top: 4em;
+  position: relative;
+}
+
+.editDeleteButtons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 19em;
+  display: flex;
+}
+
+.button
+{
+  background: #fff;
+  border: 1PX;
+}
+
+.Edit::before
+{
+  content: url('assets/Edit-icon.png');
+  margin-right: 4px;
+}
+
+.details-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.edit-btn, 
+.delete-btn {
+  background-color: #FFFFFF;
+  color: #080808;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.edit-btn::before
+{
+ 
+}
+
+.delete-btn::before
+{
+  content: url('assets\delete1.png');
+  margin-right: 4px;
+}
+.edit-btn:hover, .delete-btn:hover {
+  background-color:ffff;
+}

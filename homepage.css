@@ -9,6 +9,13 @@
     padding-top: 11px
  
   } 
+  .contact:hover {
+    background-color: #cee7f2; 
+  }
+  .contact.active {
+    background-color: #cee7f2;
+  }
+
   .titel {
     background-color: #3399CC;
     padding: 1px;
@@ -89,14 +96,14 @@
   }
    
   .dialog-box {
-    width: 495px;
-    margin-left: 28em;
+    width: 449px;
+    margin-left: 29em;
     margin-top: 3em;
-    padding: 20px;
+    padding: 29px;
     background-color: #fff;
-    border: 1px solid #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    display: none;
+    /* border: 1px solid #333; */
+    box-shadow: 0 0 10px rgb(17 1 1 / 86%);
+     display: none; 
     position: absolute;
     z-index: 1000;
   }
@@ -122,6 +129,7 @@
    
   .phone {
     display: flex;
+    column-gap: 15px;
   }
    
   .input-group .phone input {
@@ -137,7 +145,16 @@
     width: 177px;
     padding-left: 25px;
   }
-   
+  
+  .add{
+    margin-right: 33px;
+    padding: 5px 38px 5px 28px;
+    background-color: green;
+    color: #fff;
+    float: right;
+    border: none;
+     }
+
 .showContacts
 {
   display: flex;
@@ -146,16 +163,19 @@
 .fullDetailsBox
 {
   margin-left: 9em;
-  margin-top: 4em;
+  margin-top: 2em;
   position: relative;
+  font-family: system-ui;
 }
 
 .editDeleteButtons {
   position: absolute;
-  top: 0;
+  top: 18px;
   right: 0;
   left: 19em;
   display: flex;
+  column-gap: 18px;
+
 }
 
 .button
@@ -164,38 +184,13 @@
   border: 1PX;
 }
 
-.Edit::before
+.editicon
 {
   content: url('assets/Edit-icon.png');
   margin-right: 4px;
 }
 
-.details-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
 
-.edit-btn, 
-.delete-btn {
-  background-color: #FFFFFF;
-  color: #080808;
-  border: none;
-  padding: 8px 12px;
-  margin-left: 8px;
-  cursor: pointer;
-}
-
-.edit-btn::before
-{
- 
-}
-
-.delete-btn::before
-{
-  content: url('assets\delete1.png');
-  margin-right: 4px;
-}
 .edit-btn:hover, .delete-btn:hover {
   background-color:ffff;
 }

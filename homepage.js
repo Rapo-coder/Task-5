@@ -12,7 +12,6 @@ var isEditing=false;
 //add contact
 function addContact() 
 {
-
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var mobile = document.getElementById('mobile').value;
@@ -37,7 +36,7 @@ function addContact()
       website:website,
       address:address,
     };
-    console.log(contact);
+    console.log('contactttttt',contact);
     if(isEditing)
     {
       updateContact(contact);
@@ -48,6 +47,7 @@ function addContact()
     }
     closeDialog();
     isEditing = false;
+    
   }
    
   function isValidEmail(email) {
@@ -60,12 +60,23 @@ function addContact()
     return mobileRegex.test(mobile);
   }
 
+
+function generateUniqueId()
+{
+  var idCounter = parseInt(localStorage.getItem('idCounter')) || 0;
+  idCounter+=1;
+  localStorage.setItem('idCounter', idCounter);
+  return idCounter.toString();
+}
+
   //save the contact
 
   function saveContact(contact) 
   {
     var existingContacts = JSON.parse(localStorage.getItem('contacts')) || [];
-    existingContacts.push(contact);
+    var id = generateUniqueId();
+    existingContacts.push({...contact,id});
+    console.log("contact",existingContacts)
     localStorage.setItem('contacts', JSON.stringify(existingContacts));
     alert("Contact added successfully")
     closeDialog();
@@ -77,7 +88,7 @@ function addContact()
   {
       var existingContacts = JSON.parse(localStorage.getItem("contacts"))
       var contactList = document.getElementById('contactList');
-      existingContacts.forEach(function(contact) {
+      existingContacts.forEach(function(contact){
       var contactElement = document.createElement('div');
       contactElement.className = 'contact';
       contactElement.innerHTML = `
@@ -88,7 +99,6 @@ function addContact()
         {
           showFullDetails(contact);
         };  
-        contactElement.set
       contactList.appendChild(contactElement);
       
     });
@@ -111,51 +121,61 @@ function addContact()
           `;
           fullDetailsBox.innerHTML = detailsHTML;
 
-          
-          
+
           let editDeleteContainer = document.createElement("div");
           editDeleteContainer.className = "editDeleteButtons";
        
-          let editButton = document.createElement("button");
-          let editIcon = document.createElement('img')
-          editIcon.src ='assets/Edit-icon.png'
-          editButton.textContent = "Edit";
-          editButton.style.color = "#black";  
-          editButton.background= "white"
+          let editIconImage = document.createElement("img");
+          editIconImage.className = "editicon";
+          editIconImage.src = 'assets/Edit-icon.png';
+          editIconImage.style.width = '20px'; 
+          editIconImage.style.height = '20px'; 
+          
+          let editText = document.createElement("span");
+          editText.textContent = "Edit";
+          
+          let editButton = document.createElement("div");
+          editButton.className = "editicon";
+          editButton.appendChild(editIconImage);
+          editButton.appendChild(editText);
+         
        
-          let deleteButton = document.createElement("button");
-          let deleteIcon = document.createElement('img')
-          deleteIcon.src ='assets/Edit-icon.png'
-          deleteButton.textContent = "Delete";
-          deleteButton.style.color = "black";
+          let deleteButton = document.createElement("div");
+          deleteButton.textContent = "DELETE"
+          deleteButton.className = "deleteicon";
+          deleteButton.style.color = "#black";
+          deleteButton.style.background = "white";
        
           editDeleteContainer.appendChild(editButton);
           editDeleteContainer.appendChild(deleteButton);
        
           fullDetailsBox.appendChild(editDeleteContainer);
         
-          
           editButton.onclick = function()
           {
-            openEditDailog(contact)
+            openEditDialog(contact);
           }
-
-          deleteButton.onclick = function () {
-            if (confirm('Are you sure you want to delete this contact?')) {
-              deleteContact(contact);
+          deleteButton.onclick = function () 
+          {
+            if (confirm('Are you sure you want to delete this contact?')) 
+            {
+              deleteContact(contact.id); 
               closeDetailsBox();
             }
+            return false;
           };
   }
 
-  function closeDetailsBox() {
+  function closeDetailsBox() 
+  {
     var fullDetailsBox = document.getElementById('fullDetailsBox');
     fullDetailsBox.innerHTML = '';
-}
+  }
+  
  
 //open edit dialog box
-function openEditDailog(contact)
-{
+
+function openEditDialog(contact) {
   isEditing = true;
   document.getElementById('name').value = contact.name;
   document.getElementById('email').value = contact.email;
@@ -164,28 +184,35 @@ function openEditDailog(contact)
   document.getElementById('website').value = contact.website;
   document.getElementById('address').value = contact.address;
 
+  var idElement = document.getElementById('id');
+  if (idElement) {
+    idElement.value = contact.id;
+  }
+
   openDialog();
 }
+
  
 
-//Update the contact
 function updateContact(updatedContact) {
   var existingContacts = JSON.parse(localStorage.getItem('contacts')) || [];
-  var index = existingContacts.findIndex(contact => contact.name === updatedContact.name);
- 
-  if (index != -1) {
-    existingContacts[index] = updatedContact;
+  var index = existingContacts.findIndex(contact => contact.id === updatedContact.id);
+
+  if (index !== -1) {
+    existingContacts[index] = { ...existingContacts[index], ...updatedContact };
     localStorage.setItem('contacts', JSON.stringify(existingContacts));
     alert('Contact updated successfully');
   }
 }
 
 
+
 //Delete Contacts
-function deleteContact(contact) {
+function deleteContact(contactId) {
   var existingContacts = JSON.parse(localStorage.getItem('contacts')) || [];
-  var contact = existingContacts.filter(existingContact => existingContact.name !== contact.name);
-  localStorage.setItem('contacts', JSON.stringify(contact));
+  var updatedContacts = existingContacts.filter(existingContact => existingContact.id !== contactId);
+  localStorage.setItem('contacts', JSON.stringify(updatedContacts));
   alert('Contact deleted successfully');
-  }
+}
+
 

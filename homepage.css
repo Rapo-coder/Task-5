@@ -89,6 +89,7 @@
     font-family: sans-serif;
     margin-left: 19px;
     font-weight: normal;
+    
   }
    
   h4 {
@@ -157,6 +158,7 @@
 
 .showContacts
 {
+ 
   display: flex;
 }
 
@@ -167,6 +169,11 @@
   position: relative;
   font-family: system-ui;
 }
+.button
+{
+  background: #fff;
+  border: 1PX;
+}
 
 .editDeleteButtons {
   position: absolute;
@@ -175,22 +182,32 @@
   left: 19em;
   display: flex;
   column-gap: 18px;
-
 }
 
-.button
-{
-  background: #fff;
-  border: 1PX;
-}
 
 .editicon
 {
-  content: url('assets/Edit-icon.png');
+  display: flex;
+  flex-direction: row;
+}
+.editicon::before
+{
+  display: inline-block;
+    content: "";
+    margin-right: 4px;
+}
+
+.deleteicon::before
+{
+  content: url('assets/delete2.png');
   margin-right: 4px;
 }
 
-
-.edit-btn:hover, .delete-btn:hover {
-  background-color:ffff;
+.deleteicon
+{
+  display: flex;
+  flex-direction: row;
 }
+
+
+

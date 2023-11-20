@@ -4,16 +4,16 @@
   .contact{
     margin-left: 2px;
     border: 1px solid darkgray;
-    width: 300px;
+    width: 335px;
     padding-left: 8px;
     padding-top: 11px
  
   } 
-  .contact:hover {
-    background-color: #cee7f2; 
-  }
-  .contact.active {
-    background-color: #cee7f2;
+  .contact:hover,
+  .contact:active
+  {
+    background-color: #CEE7F2; 
+    cursor: pointer;
   }
 
   .titel {
@@ -22,12 +22,12 @@
   }
    
   .titel h1 {
-    font-size: 25px;
+    font-size: 2.8em;
     color: #FFFFFF;
-    font-weight: normal;
-    font-family: sans-serif;
-    letter-spacing: 2px;
-    margin-left: 21px;
+    font-weight: lighter;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 3px;
+    margin-left: 13px;
   }
    
   .navbar {
@@ -48,8 +48,7 @@
   }
    
   .active {
-    background-color: #FF9900;
-    border-left: #FFF solid 3px;
+    background-color: #CEE7F2;
     background-clip: padding-box;
   }
    
@@ -62,6 +61,12 @@
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
+  }
+
+  .navbar-items
+  {
+    font-family: sans-serif;
+    font-weight: bold;
   }
    
   .navbar-items a {
@@ -147,7 +152,7 @@
     padding-left: 25px;
   }
   
-  .add{
+  .add-update{
     margin-right: 33px;
     padding: 5px 38px 5px 28px;
     background-color: green;
@@ -162,33 +167,80 @@
   display: flex;
 }
 
-.fullDetailsBox
-{
-  margin-left: 9em;
-  margin-top: 2em;
+
+
+/* Add these styles to your existing CSS file or create a new one */
+
+#fullDetailsBox {
+  width: 300px;
+  margin-top: 25px;
+  margin-left: 7em;
+  font-family: 'Arial Narrow';
   position: relative;
-  font-family: system-ui;
+
 }
-.button
+
+.contact-details {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-details h1 {
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: lighter;
+}
+
+.contact-details p {
+  margin: 0;
+  color: #666;
+}
+
+.contact-details p.email
+{
+  margin-top: 1px;
+  margin-bottom: 17px;
+}
+
+
+.contact-details p.landline
+{
+ margin-bottom: 20px;
+}
+
+.contact-details p.address
+{
+  margin-top: 20px;
+}
+
+
+/* .button
 {
   background: #fff;
   border: 1PX;
-}
+} */
 
 .editDeleteButtons {
   position: absolute;
-  top: 18px;
+  top: 2.1em;
   right: 0;
   left: 19em;
   display: flex;
   column-gap: 18px;
 }
 
+.editicon {
+  width: 13px;
+  height: 15px;
+}
 
 .editicon
 {
   display: flex;
   flex-direction: row;
+  margin-right: 7px;
+
 }
 .editicon::before
 {
@@ -197,17 +249,24 @@
     margin-right: 4px;
 }
 
-.deleteicon::before
-{
-  content: url('assets/delete2.png');
-  margin-right: 4px;
-}
 
 .deleteicon
 {
   display: flex;
   flex-direction: row;
+  margin-left: 10px;
 }
 
+.deleteicon::before
+{
+  display: inline-block;
+    content: "";
+    margin-right: 4px;
+}
 
+.contact-name {
+  font-size: 24px;
+  font-weight: lighter;
+  margin-bottom: 1.5px;
+}
 

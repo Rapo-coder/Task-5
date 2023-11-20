@@ -22,12 +22,12 @@
   }
    
   .titel h1 {
+    margin: 15px 6px 15px 13px;
     font-size: 2.8em;
     color: #FFFFFF;
     font-weight: lighter;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 3px;
-    margin-left: 13px;
+    letter-spacing: 4px;
   }
    
   .navbar {
@@ -98,16 +98,17 @@
   }
    
   h4 {
+    margin: 11px 6px 12px 18px;
     font-size: larger;
+    font-family: system-ui;
   }
    
   .dialog-box {
     width: 449px;
-    margin-left: 29em;
+    margin-left: 27em;
     margin-top: 3em;
-    padding: 29px;
+    padding: 27px;
     background-color: #fff;
-    /* border: 1px solid #333; */
     box-shadow: 0 0 10px rgb(17 1 1 / 86%);
      display: none; 
     position: absolute;
@@ -174,7 +175,7 @@
 #fullDetailsBox {
   width: 300px;
   margin-top: 25px;
-  margin-left: 7em;
+  margin-left: 5em;
   font-family: 'Arial Narrow';
   position: relative;
 
@@ -232,14 +233,16 @@
 
 .editicon {
   width: 13px;
-  height: 15px;
+  height: 17px;
 }
 
 .editicon
 {
+  margin-top: 1px;
   display: flex;
   flex-direction: row;
   margin-right: 7px;
+  font-weight: bolder;
 
 }
 .editicon::before
@@ -249,12 +252,18 @@
     margin-right: 4px;
 }
 
+.edittext
+{
+  font-size: small;
+}
+
 
 .deleteicon
 {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
+  font-weight: bolder;
 }
 
 .deleteicon::before
@@ -264,9 +273,20 @@
     margin-right: 4px;
 }
 
-.contact-name {
-  font-size: 24px;
-  font-weight: lighter;
-  margin-bottom: 1.5px;
+.deleteText
+{
+  font-size: small;
 }
 
+
+.contact-name {
+  font-size: 26px;
+  font-weight: normal;
+  margin-bottom: 1.5px;
+  font-family: calibri Light;
+}
+
+.contaycts-container{
+  display: flex;
+  flex-direction: column;
+}

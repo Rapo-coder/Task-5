@@ -82,7 +82,9 @@ function updateContact() {
     existingContacts[index] = updatedContact;
     localStorage.setItem('contacts', JSON.stringify(existingContacts));
     alert('Contact updated successfully');
-    closeDialog();
+    displayContact();
+    
+
   }
 }
 
@@ -116,17 +118,17 @@ function saveContact(contact) {
     contact.id = generateUniqueId();
     existingContacts.push(contact);
     alert('Contact added successfully');
+    
   }
-
   localStorage.setItem('contacts', JSON.stringify(existingContacts));
   closeDialog();
-  
+  displayContact();
 }
 
 function displayContact() {
   var existingContacts = JSON.parse(localStorage.getItem("contacts"));
   var contactList = document.getElementById('contactList');
-
+  contactList.textContent=""
   if (existingContacts) {
     existingContacts.forEach(function (contact) {
       var contactElement = document.createElement('div');
@@ -172,6 +174,7 @@ function showFullDetails(contact) {
   editIconImage.src = 'assets/Edit-icon.png';
 
   let editText = document.createElement("span");
+  editText.className = 'edittext'
   editText.textContent = "EDIT";
 
   let editButton = document.createElement("div");
@@ -184,6 +187,7 @@ function showFullDetails(contact) {
   deleteIconImage.src = 'assets/delete2.png';
 
   let deleteText = document.createElement("span");
+  deleteText.className = 'deleteText'
   deleteText.textContent = "DELETE";
 
   let deleteButton = document.createElement("div");
@@ -234,4 +238,6 @@ function deleteContact(contact) {
   });
   existingContacts.splice(index, 1);
   localStorage.setItem('contacts', JSON.stringify(existingContacts));
+  
 }
+displayContact();

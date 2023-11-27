@@ -14,7 +14,7 @@
   <div class="navbar">
     <div class="navbar-items">
       <ul>
-        <li><a href="#">HOME</a></li>
+        <li><a href="#" onclick="displayContact()">HOME</a></li>
         <li><a href="#" onclick="openDialog()">+ADD</a></li>
         <div class="logo">
           <img src="assets\blog-icon.png">
@@ -23,22 +23,23 @@
     </div>
   </div>
  
-  <div id="addDialog" class="dialog-box">
-    <form>
+  <dialog id="addDialog" class="dialog-closed">
+    <form >
+      <span class="close-icon" onclick="closeDialog()">&#x2716;</span>
       <div class="input-group name">
         <label for="name">Name:</label>
-        <input type="text" id="name" required>          
+        <input type="text" id="name" class="name">          
       </div> 
 
       <div class="input-group"> 
         <label for="email">Email:</label>
-        <input type="email" id="email"required>
+        <input type="email" id="email" class="email">
       </div> 
       
       <div class="input-group phone"> 
           <div class="col">
               <label for="mobile">Mobile:</label>
-              <input type="tel" id="mobile" required>
+              <input type="tel" id="mobile" class="mobile">
           </div>
           <div class="col">
               <label for="landline">Landline:</label>
@@ -58,22 +59,40 @@
 
       <div class="buttons">
         <button id="addUpdateButton" onclick="addOrUpdateContact()" class="add-update">Add</button>
+       
       </div>
     </form> 
-  </div>
+  </dialog>
   
   <div class="showContacts">
     <div class="contaycts-container">
-      <h4>CONTACTS</h4>
-
-    <div id="contactList" class="contactLists" >
+        <h4>CONTACTS</h4>
+        <div id="contactList" class="contactLists"></div>
     </div>
+    <div id="fullDetailsBox" class="fullDetailsBox">
+        <div id="contactDetails" class="contact-details"> 
+          <strong><h1><p id="cname" class="name"></p></h1></strong>
+          <p id="cemail" class="email">Email:</p>
+          <p id="cmobile" class="mobile">Mobile</p>
+          <p id="clandline" class="landline">Landline: </p>
+          <p id="cwebsite" class="website">Website:</p>
+          <p id="caddress"  class="address">Address:</p>
+        </div>
+        <div class="editDeleteButtons">
+            <div class="editicon" id="editButton" >
+                <img src="assets/Edit-icon.png" class="editicon">
+                <span class="edittext">EDIT</span>
+            </div>
+            <div class="deleteicon" id="deleteButton" >
+                <img src="assets/delete2.png" class="deleteicon">
+                <span class="deleteText">DELETE</span>
+            </div>
+        </div>
     </div>
-    
-    <div id="fullDetailsBox" class="fullDetailsBox"> </div>
-  </div>
 </div>
 
-<script src="homepage.js"></script>
+<script src="service.js"></script>
+<script src="model.js"></script>
+<script src="Dom.js"></script>
 </body>
 </html>

@@ -1,10 +1,15 @@
+body
+{
+  margin: 0px;
+  padding: 0px;
+}
 .container {
     margin: 0px;
   }
   .contact{
     margin-left: 2px;
     border: 1px solid darkgray;
-    width: 335px;
+    width: 356px;
     padding-left: 8px;
     padding-top: 11px
  
@@ -47,6 +52,7 @@
     color: black;
   }
    
+
   .active {
     background-color: #CEE7F2;
     background-clip: padding-box;
@@ -89,6 +95,16 @@
     padding-top: 2px;
   }
    
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+  }
+   
+
   .contactLists {
     font-size: normal;
     font-family: sans-serif;
@@ -109,75 +125,81 @@
     margin-top: 3em;
     padding: 27px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgb(17 1 1 / 86%);
-     display: none; 
+    box-shadow: 0 0 10px rgba(69, 68, 68, 0.86);
     position: absolute;
     z-index: 1000;
+    border: hidden;
+
   }
 
-  .input-group {
+  .input-group 
+  {
     margin-bottom: 15px;
   }
    
-  .input-group label {
+  .input-group label 
+  {
     display: block;
     margin-bottom: 5px;
   }
    
-  .input-group input {
+  .input-group input 
+  {
     width: 345px;
     padding: 8px;
   }
    
-  .input-group textarea {
+  .input-group textarea 
+  {
     width: 345px;
     padding: 8px;
   }
    
-  .phone {
+  .phone 
+  {
     display: flex;
     column-gap: 15px;
   }
    
-  .input-group .phone input {
+  .input-group .phone input 
+  {
     padding: 8px;
   }
    
-  .col input {
+  .col input 
+  {
     width: 158px;
   }
    
-  .details {
+  .details 
+  {
     border: 1px solid;
     width: 177px;
     padding-left: 25px;
   }
   
-  .add-update{
+  .add-update
+  {
     margin-right: 33px;
     padding: 5px 38px 5px 28px;
     background-color: green;
     color: #fff;
     float: right;
     border: none;
-     }
+  }
 
 .showContacts
 {
- 
   display: flex;
 }
-
-
-
-/* Add these styles to your existing CSS file or create a new one */
 
 #fullDetailsBox {
   width: 300px;
   margin-top: 25px;
-  margin-left: 5em;
+  margin-left: 9em;
   font-family: 'Arial Narrow';
   position: relative;
+  display: none;
 
 }
 
@@ -188,14 +210,14 @@
 }
 
 .contact-details h1 {
-  color: #333;
+  color: black;
   margin-bottom: 5px;
   font-weight: lighter;
 }
 
 .contact-details p {
   margin: 0;
-  color: #666;
+  color: black;
 }
 
 .contact-details p.email
@@ -214,13 +236,6 @@
 {
   margin-top: 20px;
 }
-
-
-/* .button
-{
-  background: #fff;
-  border: 1PX;
-} */
 
 .editDeleteButtons {
   position: absolute;
@@ -245,18 +260,11 @@
   font-weight: bolder;
 
 }
-.editicon::before
-{
-  display: inline-block;
-    content: "";
-    margin-right: 4px;
-}
 
 .edittext
 {
   font-size: small;
 }
-
 
 .deleteicon
 {
@@ -266,18 +274,11 @@
   font-weight: bolder;
 }
 
-.deleteicon::before
-{
-  display: inline-block;
-    content: "";
-    margin-right: 4px;
-}
-
 .deleteText
 {
   font-size: small;
+  margin-top: 1px;
 }
-
 
 .contact-name {
   font-size: 26px;
@@ -290,3 +291,24 @@
   display: flex;
   flex-direction: column;
 }
+.displaycontact{
+  display: block;
+}
+
+
+.dialog-open {
+  display: block;
+  position: absolute;
+  border: hidden;
+  margin-top: 22px;
+  padding: 27px;
+  width: 449px;
+  box-shadow: 0 0 10px rgba(69, 68, 68, 0.86);
+  z-index: 1000;
+}
+
+.dialog-close
+{
+  display: none;
+}
+

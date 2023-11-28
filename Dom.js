@@ -1,3 +1,5 @@
+var contactService = new ContactService();
+
 window.onload = function () {
   displayContact();
 };
@@ -83,6 +85,7 @@ function closeDialog() {
     } else {
       addNewContact();
     }
+    window.onload();
   }
   
   function openEditDialog(contact) {
@@ -102,7 +105,7 @@ function closeDialog() {
     var fullDetailsBox = document.getElementById('fullDetailsBox');
     fullDetailsBox.innerHTML = '';
   }
-  var contactService = new ContactService();
+
 
   
   function displayContact() {
@@ -115,11 +118,21 @@ function closeDialog() {
         existingContacts.forEach(function (contact) {
             var contactElement = document.createElement('div');
             contactElement.className = 'contact';
-            contactElement.innerHTML = `
-                <span class="contact-name">${contact.name}</span><br>
-                ${contact.email}<br>
-                ${contact.mobile}<br><br>`;
-                contactElement.onclick = function () {
+
+            var nameElement = document.createElement('div');
+            nameElement.className = 'contact-name';
+            nameElement.textContent = contact.name;
+            contactElement.appendChild(nameElement);
+
+            var emailElement = document.createElement('div');
+            emailElement.textContent = contact.email;
+            contactElement.appendChild(emailElement);
+
+            var mobileElement = document.createElement('div');
+            mobileElement.textContent = contact.mobile;
+            contactElement.appendChild(mobileElement);
+
+            contactElement.onclick = function () {
                 var allContacts = document.querySelectorAll('.contact');
                 allContacts.forEach(function (element) {
                     element.classList.remove('active');
@@ -128,59 +141,70 @@ function closeDialog() {
                 showFullDetails(contact.id);
             };
             contactList.appendChild(contactElement);
+            
         });
     }
 }
+
 displayContact();
 
 function showFullDetails(id) {
-  let contact = contactService.getContactById(id); 
+  let contact = contactService.getContactById(id);
   let editButton = document.getElementById('editButton');
   var deleteButton = document.getElementById('deleteButton');
   let fullDetailsBox = document.getElementById("fullDetailsBox");
   fullDetailsBox.style.display = "block";
 
   let nameElement = document.getElementById("cname");
-  nameElement.textContent=contact.name;
+  nameElement.textContent = contact.name;
 
   let emailElement = document.getElementById("cemail");
-  emailElement.textContent="Email:"+contact.email;
+  emailElement.textContent = "Email:" + contact.email;
 
   let mobileElement = document.getElementById("cmobile");
-  mobileElement.textContent = "Mobile:"+contact.mobile;
+  mobileElement.textContent = "Mobile:" + contact.mobile;
 
   let landlineElement = document.getElementById("clandline");
-  landlineElement.textContent = "Landline:"+contact.landline;
+  landlineElement.textContent = "Landline:" + contact.landline;
 
   let websiteElement = document.getElementById("cwebsite");
-  websiteElement.textContent = "Website:"+contact.website;
+  websiteElement.textContent = "Website:" + contact.website;
 
   let addressElement = document.getElementById("caddress");
-  addressElement.textContent = "Address:"+contact.address;
+  addressElement.textContent = "Address:" + contact.address;
 
   editButton.dataset.contactId = contact.id;
   deleteButton.dataset.contactId = contact.id;
 
-  editButton.onclick = function () {
-      openEditDialog(contact);
-      displayContact()
-
+  editButton.onclick = function () 
+  {
+    openEditDialog(contact);
   };
 
-  deleteButton.onclick = function () {
-      if (confirm('Are you sure you want to delete this contact?')) {
-          let isDeleted= contactService.deleteContact(contact);
-          if(isDeleted)
-          {
-            let fullDetailsBox = document.getElementById("fullDetailsBox");
-            fullDetailsBox.style.display = "none";
-          }
-          displayContact();
-      }
-      return false;
+  deleteButton.onclick = function () 
+  {
+    deleteContactById(contact.id);
   };
 }
- 
+
+function deleteContactById(id) {
+  let contact = contactService.getContactById(id);
+
+  if (confirm('Are you sure you want to delete this contact?')) {
+    let isDeleted = contactService.deleteContact(contact);
+
+    if (isDeleted) {
+      let deletedContactElement = document.querySelector('.contact.active');
+      if (deletedContactElement) {
+        deletedContactElement.classList.remove('active');
+        deletedContactElement.remove();
+      }
+      let fullDetailsBox = document.getElementById("fullDetailsBox");
+      fullDetailsBox.style.display = "none";
+    }
+  }
+}
+
 function clearInputFields() {
   document.getElementById('name').value = '';
   document.getElementById('email').value = '';

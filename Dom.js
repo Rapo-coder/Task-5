@@ -86,8 +86,11 @@ function updateContact() {
   // Update the existing contact element directly without calling displayContats function
   var updatedContactElement = updateContactList(updatedContact);
   var contactList = document.getElementById('contactList');
+  var existingContactElement = document.querySelector(`.contact[data-id="${updatedContact.id}"]`);
 
-
+  if (existingContactElement) {
+    contactList.replaceChild(updatedContactElement, existingContactElement);
+  }
 }
 
 function createContactList(contact) {

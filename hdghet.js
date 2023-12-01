@@ -1,5 +1,6 @@
 var contactService = new ContactService();
 
+// Initialize contact list on page load
 window.onload = function () {
   displayContact();
 };
@@ -57,16 +58,20 @@ function addNewContact() {
     alert("Please enter a valid email address.");
     return;
   }
+
   var contact = new Contact(name, email, mobile, landline, website, address);
   contactService.saveContact(contact);
+
+  // Clear input fields directly
   clearInputFields();
-  closeDialog();
-  
-//Added the existing contact element directly without calling displayContats function
-  var contactElement = createContactList(contact);
+
+  // Create and insert the new contact card directly
+  var contactElement = createContactElement(contact);
   var contactList = document.getElementById('contactList');
   contactList.appendChild(contactElement);
- }
+
+  markAsActiveAndDisplayDetails(contact.id); // Optional: Mark as active and display details
+}
 
 function updateContact() {
   var name = document.getElementById('name').value;
@@ -79,21 +84,25 @@ function updateContact() {
 
   var updatedContact = new Contact(name, email, mobile, landline, website, address, addButton.dataset.contactId);
   contactService.updateContact(updatedContact);
+
+  // Close dialog and clear input fields directly
   closeDialog();
   clearInputFields();
-  showFullDetails(addButton.dataset.contactId)
+  showFullDetails(addButton.dataset.contact)
 
-  // Update the existing contact element directly without calling displayContats function
-  var updatedContactElement = updateContactList(updatedContact);
+  // Update the existing contact element directly
+  var updatedContactElement = updateContactElement(updatedContact);
   var contactList = document.getElementById('contactList');
   var existingContactElement = document.querySelector(`.contact[data-id="${updatedContact.id}"]`);
 
   if (existingContactElement) {
     contactList.replaceChild(updatedContactElement, existingContactElement);
   }
+
+  markAsActiveAndDisplayDetails(updatedContact.id);
 }
 
-function createContactList(contact) {
+function createContactElement(contact) {
   var contactElement = document.createElement('div');
   contactElement.className = 'contact';
   contactElement.dataset.id = contact.id;
@@ -123,9 +132,10 @@ function createContactList(contact) {
   return contactElement;
 }
 
-function updateContactList(contact) {
-  var updatedContactElement = createContactList(contact);
-  updatedContactElement.classList.add('active'); 
+function updateContactElement(contact) {
+  var updatedContactElement = createContactElement(contact);
+  updatedContactElement.classList.add('active'); // Preserve the active state
+
   return updatedContactElement;
 }
 
@@ -164,7 +174,7 @@ function displayContact() {
 
   if (existingContacts) {
     existingContacts.forEach(function (contact) {
-      var contactElement = createContactList(contact);
+      var contactElement = createContactElement(contact);
       contactList.appendChild(contactElement);
     });
   }
@@ -197,19 +207,14 @@ function showFullDetails(id) {
 
   editButton.dataset.contactId = contact.id;
   deleteButton.dataset.contactId = contact.id;
-}
 
-function editButton() {
-  var editButton = document.getElementById('editButton');
-  var contactId = editButton.dataset.contactId;
-  var contact = contactService.getContactById(contactId);
-  openEditDialog(contact);
-}
+  editButton.onclick = function () {
+    openEditDialog(contact);
+  };
 
-function deleteButton() {
-  var deleteButton = document.getElementById('deleteButton');
-  var contactId = deleteButton.dataset.contactId;
-  deleteContactById(contactId);
+  deleteButton.onclick = function () {
+    deleteContactById(contact.id);
+  };
 }
 
 function deleteContactById(id) {
@@ -218,11 +223,9 @@ function deleteContactById(id) {
   if (confirm('Are you sure you want to delete this contact?')) {
     let isDeleted = contactService.deleteContact(contact);
 
-    if (isDeleted) 
-    {
+    if (isDeleted) {
       let deletedContactElement = document.querySelector('.contact.active');
-      if (deletedContactElement) 
-      {
+      if (deletedContactElement) {
         deletedContactElement.classList.remove('active');
         deletedContactElement.remove();
       }

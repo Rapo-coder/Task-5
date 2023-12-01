@@ -22,6 +22,7 @@ class ContactService {
         this.contacts= this.contacts.map(contact => (contact.id === updatedContact.id ? updatedContact : contact));
         this.updLocalStorage();
         alert('Contact updated successfully');
+        return true;
     }
 
     deleteContact(contact) 

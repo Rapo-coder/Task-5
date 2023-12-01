@@ -312,6 +312,10 @@ body
   display: none;
 }
 
-/* #fullDetailsBox.visible {
+#fullDetailsBox.visible {
   display: block; 
-} */
+}
+
+#fullDetailsBox.hidden {
+  display: none;
+}

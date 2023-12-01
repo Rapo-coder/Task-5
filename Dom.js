@@ -86,11 +86,8 @@ function updateContact() {
   // Update the existing contact element directly without calling displayContats function
   var updatedContactElement = updateContactList(updatedContact);
   var contactList = document.getElementById('contactList');
-  var existingContactElement = document.querySelector(`.contact[data-id="${updatedContact.id}"]`);
 
-  if (existingContactElement) {
-    contactList.replaceChild(updatedContactElement, existingContactElement);
-  }
+
 }
 
 function createContactList(contact) {
@@ -175,8 +172,9 @@ function showFullDetails(id) {
   let editButton = document.getElementById('editButton');
   var deleteButton = document.getElementById('deleteButton');
   let fullDetailsBox = document.getElementById("fullDetailsBox");
-  fullDetailsBox.style.display = "block";
-
+  fullDetailsBox.classList.add("visible");
+  fullDetailsBox.classList.remove("hidden");
+  
   let nameElement = document.getElementById("cname");
   nameElement.textContent = contact.name;
 
@@ -227,7 +225,8 @@ function deleteContactById(id) {
         deletedContactElement.remove();
       }
       let fullDetailsBox = document.getElementById("fullDetailsBox");
-      fullDetailsBox.style.display = "none";
+      fullDetailsBox.classList.remove("visible");
+      fullDetailsBox.classList.add("hidden");
     }
   }
 }

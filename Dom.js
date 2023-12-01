@@ -91,6 +91,7 @@ function updateContact() {
   if (existingContactElement) {
     contactList.replaceChild(updatedContactElement, existingContactElement);
   }
+  showFullDetails(addButton.dataset.contactId)
 }
 
 function createContactList(contact) {

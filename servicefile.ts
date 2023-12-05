@@ -39,7 +39,8 @@ class ContactService {
         return this.contacts.find((contact: any) => contact.id === id);
     }
 
-    generateUniqueId() {
+    generateUniqueId() 
+    {
         let idCounter: any = localStorage.getItem('idCounter');
         idCounter = idCounter ? Number(idCounter) : 0;
         idCounter++;

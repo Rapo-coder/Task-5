@@ -33,13 +33,6 @@ function isValidMobile(mobile) {
   return mobileRegex.test(mobile);
 }
 
-function generateUniqueId() {
-  var idCounter = parseInt(localStorage.getItem('idCounter')) || 0;
-  idCounter++;
-  localStorage.setItem('idCounter', idCounter);
-  return 'contact_' + idCounter.toString();
-}
-
 function addNewContact() {
   var name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
@@ -69,29 +62,29 @@ function addNewContact() {
  }
 
 function updateContact() {
-  var name = document.getElementById('name').value;
-  var email = document.getElementById('email').value;
-  var mobile = document.getElementById('mobile').value;
-  var landline = document.getElementById('landline').value;
-  var website = document.getElementById('website').value;
-  var address = document.getElementById('address').value;
-  var addButton = document.getElementById('addUpdateButton');
+  let name = document.getElementById('name').value;
+  let email = document.getElementById('email').value;
+  let mobile = document.getElementById('mobile').value;
+  let landline = document.getElementById('landline').value;
+  let website = document.getElementById('website').value;
+  let address = document.getElementById('address').value;
+  let addButton = document.getElementById('addUpdateButton');
 
-  var updatedContact = new Contact(name, email, mobile, landline, website, address, addButton.dataset.contactId);
+  let updatedContact = new Contact(name, email, mobile, landline, website, address, addButton.dataset.contactId);
   contactService.updateContact(updatedContact);
   closeDialog();
   clearInputFields();
-  showFullDetails(addButton.dataset.contactId)
+  showFullDetails(addButton?.dataset.contactId ?? '')
 
   // Update the existing contact element directly without calling displayContats function
-  var updatedContactElement = updateContactList(updatedContact);
-  var contactList = document.getElementById('contactList');
-  var existingContactElement = document.querySelector(`.contact[data-id="${updatedContact.id}"]`);
+  let updatedContactElement = updateContactList(updatedContact);
+  let contactList = document.getElementById('contactList');
+  let existingContactElement = document.querySelector(`.contact[data-id="${updatedContact.id}"]`);
 
   if (existingContactElement) {
     contactList.replaceChild(updatedContactElement, existingContactElement);
   }
-  showFullDetails(addButton.dataset.contactId)
+  
 }
 
 function createContactList(contact) {
@@ -125,13 +118,13 @@ function createContactList(contact) {
 }
 
 function updateContactList(contact) {
-  var updatedContactElement = createContactList(contact);
+  let updatedContactElement = createContactList(contact);
   updatedContactElement.classList.add('active'); 
   return updatedContactElement;
 }
 
 function addOrUpdateContact() {
-  var addButton = document.getElementById('addUpdateButton');
+  let addButton = document.getElementById('addUpdateButton');
   if (addButton.textContent === 'Update') {
     updateContact();
   } else {
@@ -202,15 +195,15 @@ function showFullDetails(id) {
 }
 
 function editButton() {
-  var editButton = document.getElementById('editButton');
-  var contactId = editButton.dataset.contactId;
-  var contact = contactService.getContactById(contactId);
+  let editButton = document.getElementById('editButton');
+  let contactId = editButton.dataset.contactId;
+  let contact = contactService.getContactById(contactId);
   openEditDialog(contact);
 }
 
 function deleteButton() {
-  var deleteButton = document.getElementById('deleteButton');
-  var contactId = deleteButton.dataset.contactId;
+  let deleteButton = document.getElementById('deleteButton');
+  let contactId = deleteButton.dataset.contactId;
   deleteContactById(contactId);
 }
 

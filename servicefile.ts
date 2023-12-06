@@ -1,50 +1,53 @@
-class ContactService {
-    contacts: any = [];
-
+  class ContactService {
+    contacts: Contact[] = [];
+  
     constructor() {
-        const storedContacts = localStorage.getItem('contacts');
-        this.contacts = storedContacts ? JSON.parse(storedContacts) : [];
+      const storedContacts = localStorage.getItem('contacts');
+      this.contacts = storedContacts ? JSON.parse(storedContacts) : [];
     }
-
+  
     updLocalStorage() {
-        localStorage.setItem('contacts', JSON.stringify(this.contacts));
+      localStorage.setItem('contacts', JSON.stringify(this.contacts));
     }
-
-    saveContact(contact: any) {
-        contact.id = this.generateUniqueId();
-        this.contacts.push(contact);
-        this.updLocalStorage();
-        alert('Contact added successfully');
+  
+    saveContact(contact: Contact): Contact {
+      contact.id = this.generateUniqueId();
+      this.contacts.push(contact);
+      this.updLocalStorage();
+      alert('Contact added successfully');
+      return contact;
     }
-
-    updateContact(updatedContact: any) {
-        this.contacts = this.contacts.map((contact: any) => (contact.id === updatedContact.id ? updatedContact : contact));
-        this.updLocalStorage();
-        alert('Contact updated successfully');
-        return true;
+  
+    updateContact(updatedContact: Contact): boolean {
+      this.contacts = this.contacts.map((contact) =>
+        contact.id === updatedContact.id ? updatedContact : contact
+      );
+      this.updLocalStorage();
+      alert('Contact updated successfully');
+      return true;
     }
-
-    deleteContact(contact: any) {
-        this.contacts = this.contacts.filter((elem: any) => elem.id !== contact.id);
-        this.updLocalStorage();
-        alert('Contact deleted successfully');
-        return true;
+  
+    deleteContact(contact: Contact):boolean {
+      this.contacts = this.contacts.filter((elem) => elem.id !== contact.id);
+      this.updLocalStorage();
+      alert('Contact deleted successfully');
+      return true;
     }
-
-    getContacts() {
-        return this.contacts;
+  
+    getContacts(): Contact[] {
+      return this.contacts;
     }
-
-    getContactById(id: string | undefined) {
-        return this.contacts.find((contact: any) => contact.id === id);
+  
+    getContactById(id: string): Contact | undefined {
+      return this.contacts.find((contact) => contact.id === id);
     }
-
-    generateUniqueId() 
-    {
-        let idCounter: any = localStorage.getItem('idCounter');
-        idCounter = idCounter ? Number(idCounter) : 0;
-        idCounter++;
-        localStorage.setItem('idCounter', idCounter.toString());
-        return 'contact_' + idCounter.toString();
+  
+    generateUniqueId(): string {
+      let idCounter: number | null = Number(localStorage.getItem('idCounter'));
+      idCounter = idCounter ? idCounter : 0;
+      idCounter++;
+      localStorage.setItem('idCounter', idCounter.toString());
+      return 'contact_' + idCounter.toString();
     }
-}
+  }
+  

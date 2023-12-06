@@ -14,7 +14,9 @@ var ContactService = /** @class */ (function () {
         alert('Contact added successfully');
     };
     ContactService.prototype.updateContact = function (updatedContact) {
-        this.contacts = this.contacts.map(function (contact) { return (contact.id === updatedContact.id ? updatedContact : contact); });
+        this.contacts = this.contacts.map(function (contact) {
+            return contact.id === updatedContact.id ? updatedContact : contact;
+        });
         this.updLocalStorage();
         alert('Contact updated successfully');
         return true;
@@ -23,7 +25,6 @@ var ContactService = /** @class */ (function () {
         this.contacts = this.contacts.filter(function (elem) { return elem.id !== contact.id; });
         this.updLocalStorage();
         alert('Contact deleted successfully');
-        return true;
     };
     ContactService.prototype.getContacts = function () {
         return this.contacts;
@@ -32,8 +33,8 @@ var ContactService = /** @class */ (function () {
         return this.contacts.find(function (contact) { return contact.id === id; });
     };
     ContactService.prototype.generateUniqueId = function () {
-        var idCounter = localStorage.getItem('idCounter');
-        idCounter = idCounter ? Number(idCounter) : 0;
+        var idCounter = Number(localStorage.getItem('idCounter'));
+        idCounter = idCounter ? idCounter : 0;
         idCounter++;
         localStorage.setItem('idCounter', idCounter.toString());
         return 'contact_' + idCounter.toString();

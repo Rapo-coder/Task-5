@@ -105,15 +105,17 @@ function createContactList(contact) {
   mobileElement.textContent = contact.mobile;
   contactElement.appendChild(mobileElement);
 
-  contactElement.onclick = function () {
-    var allContacts = document.querySelectorAll('.contact');
-    allContacts.forEach(function (element) {
-      element.classList.remove('active');
-    });
-    contactElement.classList.add('active');
-    showFullDetails(contact.id);
-  };
+ contactElement.onclick = function () {
+    var allContacts = document.getElementsByClassName('contact');
+    for (var i = 0; i < allContacts.length; i++) {
+      allContacts[i].classList.remove('active');
+      if(allContacts[i].dataset.id == contact.id){
+        allContacts[i].classList.add("active");
+        showFullDetails(contact.id)
+      }
+    }
 
+  };
   return contactElement;
 }
 
@@ -207,23 +209,36 @@ function deleteButton() {
   deleteContactById(contactId);
 }
 
+function deleteButton() {
+  console.log('deleteButton clicked');
+  let deleteButton = document.getElementById('deleteButton');
+  let contactId = deleteButton.dataset.contactId;
+  console.log('Contact ID:', contactId);
+  deleteContactById(contactId);
+}
+
 function deleteContactById(id) {
+  console.log('Deleting Contact ID:', id);
   let contact = contactService.getContactById(id);
 
   if (confirm('Are you sure you want to delete this contact?')) {
-    let isDeleted = contactService.deleteContact(contact);
-
-    if (isDeleted) 
+    let deletedContactElement = document.querySelector(`.contact[data-id="${id}"]`);
+    if (deletedContactElement) 
     {
-      let deletedContactElement = document.querySelector('.contact.active');
-      if (deletedContactElement) 
-      {
-        deletedContactElement.classList.remove('active');
         deletedContactElement.remove();
-      }
+
       let fullDetailsBox = document.getElementById("fullDetailsBox");
-      fullDetailsBox.classList.remove("visible");
-      fullDetailsBox.classList.add("hidden");
+      if (fullDetailsBox) {
+        fullDetailsBox.classList.remove("visible");
+        fullDetailsBox.classList.add("hidden");
+      } else {
+        console.log('Full details box not found');
+      }
+      contactService.deleteContact(contact);
+    } 
+    else 
+    {
+      console.log('Deleted contact element not found in the DOM');
     }
   }
 }

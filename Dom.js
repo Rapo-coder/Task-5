@@ -54,12 +54,12 @@ function addNewContact() {
   contactService.saveContact(contact);
   clearInputFields();
   closeDialog();
-  
-//Added the existing contact element directly without calling displayContats function
+
+  //Added the existing contact element directly without calling displayContats function
   var contactElement = createContactList(contact);
   var contactList = document.getElementById('contactList');
   contactList.appendChild(contactElement);
- }
+}
 
 function updateContact() {
   let name = document.getElementById('name').value;
@@ -84,7 +84,7 @@ function updateContact() {
   if (existingContactElement) {
     contactList.replaceChild(updatedContactElement, existingContactElement);
   }
-  
+
 }
 
 function createContactList(contact) {
@@ -105,23 +105,21 @@ function createContactList(contact) {
   mobileElement.textContent = contact.mobile;
   contactElement.appendChild(mobileElement);
 
- contactElement.onclick = function () {
-    var allContacts = document.getElementsByClassName('contact');
-    for (var i = 0; i < allContacts.length; i++) {
-      allContacts[i].classList.remove('active');
-      if(allContacts[i].dataset.id == contact.id){
-        allContacts[i].classList.add("active");
-        showFullDetails(contact.id)
-      }
-    }
+  contactElement.onclick = function () {
+    let inactive = document.getElementsByClassName("contact active")[0];
+    inactive?.classList?.remove("active");
+    inactive = document.querySelector(`[data-id='${contact.id}']`);
+    inactive.classList.add("active");
 
+    showFullDetails(contact.id)
+    
   };
   return contactElement;
 }
 
 function updateContactList(contact) {
   let updatedContactElement = createContactList(contact);
-  updatedContactElement.classList.add('active'); 
+  updatedContactElement.classList.add('active');
   return updatedContactElement;
 }
 
@@ -173,7 +171,7 @@ function showFullDetails(id) {
   let fullDetailsBox = document.getElementById("fullDetailsBox");
   fullDetailsBox.classList.add("visible");
   fullDetailsBox.classList.remove("hidden");
-  
+
   let nameElement = document.getElementById("cname");
   nameElement.textContent = contact.name;
 
@@ -223,9 +221,8 @@ function deleteContactById(id) {
 
   if (confirm('Are you sure you want to delete this contact?')) {
     let deletedContactElement = document.querySelector(`.contact[data-id="${id}"]`);
-    if (deletedContactElement) 
-    {
-        deletedContactElement.remove();
+    if (deletedContactElement) {
+      deletedContactElement.remove();
 
       let fullDetailsBox = document.getElementById("fullDetailsBox");
       if (fullDetailsBox) {
@@ -235,9 +232,8 @@ function deleteContactById(id) {
         console.log('Full details box not found');
       }
       contactService.deleteContact(contact);
-    } 
-    else 
-    {
+    }
+    else {
       console.log('Deleted contact element not found in the DOM');
     }
   }
